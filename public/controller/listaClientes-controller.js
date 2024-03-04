@@ -1,10 +1,11 @@
 import { clienteService } from '../service/cliente-service.js'
 
-const criaNovaLinha = (nome, email, id) => {
+const criaNovaLinha = (nome, email, celular, id) => {
     const linhaNovoCliente = document.createElement('tr')
     const conteudo = `
       <td class="td" data-td>${nome}</td>
                   <td>${email}</td>
+                  <td>${celular}</td>
                   <td>
                       <ul class="tabela__botoes-controle">
                           <li><a href="../telas/edita_cliente.html?id=${id}" class="botao-simples botao-simples--editar">Editar</a></li>
@@ -16,7 +17,6 @@ const criaNovaLinha = (nome, email, id) => {
     linhaNovoCliente.dataset.id = id
     return linhaNovoCliente
 }
-
 
 const tabela = document.querySelector('[data-tabela]')
 
@@ -36,12 +36,11 @@ tabela.addEventListener('click', async (evento) => {
     }
 })
 
-
 const render = async () => {
     try {
         const listaClientes = await clienteService.listaClientes()
         listaClientes.forEach(elemento => {
-            tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.id))
+            tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.celular, elemento.id))
         })
     }
     catch (erro) {

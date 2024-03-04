@@ -10,7 +10,7 @@ const listaClientes = () => {
         })
 }
 
-const criaCliente = (nome, email) => {
+const criaCliente = (nome, email, celular) => {
     return fetch(`${BASE_PATH}`, {
         method: 'POST',
         headers: {
@@ -18,7 +18,8 @@ const criaCliente = (nome, email) => {
         },
         body: JSON.stringify({
             nome: nome,
-            email: email
+            email: email,
+            celular: celular
         })
     })
         .then(resposta => {
@@ -51,7 +52,7 @@ const detalhaCliente = (id) => {
         })
 }
 
-const atualizaCliente = (id, nome, email) => {
+const atualizaCliente = (id, nome, email, celular) => {
     return fetch(`${BASE_PATH}/${id}`, {
         method: 'PUT',
         headers: {
@@ -59,7 +60,8 @@ const atualizaCliente = (id, nome, email) => {
         },
         body: JSON.stringify({
             nome: nome,
-            email: email
+            email: email,
+            celular: celular
         })
     })
         .then(resposta => {

@@ -101,11 +101,7 @@ module.exports = class ClienteService {
             connection = await oracledb.getConnection();
             const soda = connection.getSodaDatabase();
             const clientesCollection = await soda.createCollection(CLIENTES_COLLECTION);
-            /*
-                insertOneAndGet() does not return the doc
-                for performance reasons
-                see: http://oracle.github.io/node-oracledb/doc/api.html#sodacollinsertoneandget
-            */
+
             novoCliente = await clientesCollection.insertOneAndGet(cliente);
             result = {
                 id: novoCliente.key,
